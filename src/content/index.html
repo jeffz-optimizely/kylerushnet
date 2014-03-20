@@ -1,0 +1,10 @@
+---
+title: Kyle Rush
+layout: main.hbs
+---
+{{#each posts}}
+<div class="post-summary">
+	<h2><a href="/blog/{{basename}}.html">{{post.title}}</a></h2>
+	<p class="date">{{formatDate post.date "%b %e, %Y"}}</p>
+</div>
+{{/each}}

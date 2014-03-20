@@ -1,0 +1,125 @@
+
+    /*@import 'normalize.css';*/
+
+    img {max-width: 100%;}
+
+    a {color: #000;}
+
+    $gray: #555;
+    $header-font-family: Helvetica;
+
+    .container {
+        max-width: 55em;
+        margin: 0 auto;
+    }
+    header {
+        margin: 5em 0 1em 0;
+        text-transform: uppercase;
+        a {
+            text-decoration: none;
+            color: $gray;
+            font-family: $header-font-family;
+        }
+    }
+    h1#logo {
+        font: bold 3.8em $header-font-family;
+        margin: 0;
+    }
+    nav {
+        ul {
+            list-style-type: none;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            display: inline;
+            margin: 0 1em;
+        }
+    }
+
+    h1, h2, h3, h4 {
+        font-family: 'Bell MT', serif;
+        text-align: center;
+    }
+    h1 {
+        font-size: 4em;
+        line-height: 1.1em;
+        margin-bottom: .3em;
+    }
+    h2 {font-size: 2.6em;}
+    h3 {font-size: 2em;}
+
+    $figcaption-margin: .5em auto 0 auto;
+
+    /* articles */
+    div.article-head {
+        margin: 0 0 3em 0;
+        .date {
+            color: $gray;
+            text-align: center;
+            font: 1.5em Georgia, serif;
+            margin: 0;
+        }
+    }
+    div.article-content {
+        p, figcaption {
+            font-family: Calibri;
+            font-weight: lighter;
+        }
+        p {
+            font-size: 1.5em;
+            line-height: 1.8em;
+        }
+        figure, .gist {
+            text-align: center;
+            margin: 3em 0;
+        }
+
+        figcaption {
+            width: 100%;
+            margin: $figcaption-margin;
+            font-size: 1.2em;
+            color: #666;
+        }
+    }
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+/*
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+*/
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 50em) {
+    div.article-content {
+        figcaption {
+            width: 80%;
+            margin: $figcaption-margin;
+        }
+    }
+}
+
+
+/*
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+}
+*/
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */

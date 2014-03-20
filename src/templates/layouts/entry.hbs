@@ -1,10 +1,11 @@
 ---
 layout: main.hbs
+is_post: true
 ---
 <article>
 	<div class="article-head">
 		<h1>{{title}}</h1>
-		<p class="date">DATE</p>
+		<p class="date">{{formatDate date "%b"}}<span>{{formatDate date "%e"}}</span>, {{formatDate date "%Y"}}</p>
 	</div>
 	<div class="article-content">
 		{{> body }}
