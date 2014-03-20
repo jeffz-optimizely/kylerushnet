@@ -79,24 +79,8 @@ module.exports = function(grunt) {
           ext: '.html'
         },
         files: {
-          '<%= config.dist %>/blog/': ['<%= config.src %>/content/blog/*.html']
-        }
-      },
-      homepage: {
-        options: {
-          layout: 'main.hbs',
-          collections: [
-            {
-              name: 'posts',
-              infelction: 'post',
-              sortoder: 'asc',
-              orderby: 'date',
-              files: ['<%= config.src %>/content/blog/*.html']
-            }
-          ]
-        },
-        files: {
-          '<%= config.dist %>/index.html': ['<%= config.src %>/content/index.html']
+          '<%= config.dist %>/blog/': ['<%= config.src %>/content/blog/*.html'],
+          '<%= config.dist %>/': ['<%= config.src %>/content/index.html']
         }
       }
     },

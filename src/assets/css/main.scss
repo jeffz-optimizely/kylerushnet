@@ -3,7 +3,7 @@
 
     img {max-width: 100%;}
 
-    a {color: #000;}
+    a {color: #000; text-decoration: none;}
 
     $gray: #555;
     $header-font-family: Helvetica;
@@ -16,7 +16,6 @@
         margin: 5em 0 1em 0;
         text-transform: uppercase;
         a {
-            text-decoration: none;
             color: $gray;
             font-family: $header-font-family;
         }
@@ -70,6 +69,9 @@
         p {
             font-size: 1.5em;
             line-height: 1.8em;
+            a {
+                text-decoration: underline;
+            }
         }
         figure, .gist {
             text-align: center;

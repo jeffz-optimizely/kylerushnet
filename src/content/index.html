@@ -2,9 +2,11 @@
 title: Kyle Rush
 layout: main.hbs
 ---
-{{#each posts}}
-<div class="post-summary">
-	<h2><a href="/blog/{{basename}}.html">{{post.title}}</a></h2>
-	<p class="date">{{formatDate post.date "%b %e, %Y"}}</p>
+{{#each pages}}
+	{{#if data.is_post}}
+<div class="article-head">
+	<h2><a href="/blog/{{basename}}.html">{{data.title}}</a></h2>
+	<p class="date">{{formatDate data.date "%b %e, %Y"}}</p>
 </div>
+	{{/if}}
 {{/each}}
