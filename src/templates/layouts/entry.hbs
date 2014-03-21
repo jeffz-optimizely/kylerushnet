@@ -4,8 +4,8 @@ is_post: true
 ---
 <article>
 	<div class="article-head">
+		<p class="date">&mdash;{{formatDate date "%b"}}<span>{{formatDate date "%e"}}</span>, {{formatDate date "%Y"}}&mdash;</p>
 		<h1>{{title}}</h1>
-		<p class="date">{{formatDate date "%b"}}<span>{{formatDate date "%e"}}</span>, {{formatDate date "%Y"}}</p>
 	</div>
 	<div class="article-content">
 		{{> body }}

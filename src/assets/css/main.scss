@@ -5,7 +5,8 @@
 
     a {color: #000; text-decoration: none;}
 
-    $gray: #555;
+    $dark-gray: #555;
+    $light-gray: #999;
     $header-font-family: Helvetica;
 
     .container {
@@ -13,10 +14,10 @@
         margin: 0 auto;
     }
     header {
-        margin: 5em 0 1em 0;
+        margin: 1em 0 4em 0;
         text-transform: uppercase;
         a {
-            color: $gray;
+            color: $dark-gray;
             font-family: $header-font-family;
         }
     }
@@ -44,21 +45,39 @@
     h1 {
         font-size: 4em;
         line-height: 1.1em;
-        margin-bottom: .3em;
+        margin: 0 0 .3em 0;
     }
     h2 {font-size: 2.6em;}
     h3 {font-size: 2em;}
 
     $figcaption-margin: .5em auto 0 auto;
 
+    .post {
+        margin: 0 0 5em 0;
+    }
+
     /* articles */
+    article.post {
+        div.article-head {
+            margin: 0 0 1em 0;
+            h2 {
+                font-size: 4em;
+            }
+        }
+    }
     div.article-head {
         margin: 0 0 3em 0;
+        a {
+            color: #373633;
+        }
+        h2 {
+            margin: 0 0 .3em 0;
+        }
         .date {
-            color: $gray;
+            color: $light-gray;
             text-align: center;
             font: 1.5em Georgia, serif;
-            margin: 0;
+            margin: 0 0 1em 0;
         }
     }
     div.article-content {
@@ -104,6 +123,9 @@
    ========================================================================== */
 
 @media only screen and (min-width: 50em) {
+    header {
+        margin: 6em 0;
+    }
     div.article-content {
         figcaption {
             width: 80%;
