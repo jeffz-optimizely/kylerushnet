@@ -1,0 +1,82 @@
+---
+date: 2009-06-10
+is_post: true
+title: How to use the Flickr API
+description: In this tutorial, you'll learn how the basics of using the Flickr API, requesting data in JSON format, experimenting with an optional argument, and what to do with the data you receive from a request.
+long_description: Flickr is a very well developed web application that allows you to store and share your photos. The site has an easy to use API that will allow you to use access almost all of the data on Flickr. In this tutorial, you'll learn how the basics of using the API, requesting data in JSON format, experimenting with an optional argument, and what to do with the data you receive from a request.
+---	
+<p><img title="Flickr Logo" src="http://kylerush.net/images/flickr/flickr-logo.jpg" alt="Photo by Kyle Rush" /></p>
+
+<p class="demo-header">Demo</p>
+
+<p class="demo"><a href="http://api.flickr.com/services/rest/?&amp;method=flickr.people.getPublicPhotos&amp;api_key=4ef2fe2affcdd6e13218f5ddd0e2500d&amp;user_id=29096781@N02" target="_blank">Basic Flickr API request &raquo;</a></p>
+
+<p>The <a href="http://www.flickr.com/services/api/">Flickr API</a> is a powerful way to interact with Flickr accounts. With the API, you can read almost all the data associated with pictures and sets. You can also upload pictures through the API and change/add picture information. Luckily this all pretty easy. In this post, I&#8217;ll broadly explain how to use the Flickr API so you can get started in any programming language. Tutorials and examples of how to use the API with JavaScript will come in later posts.</p>
+
+<h2 id="getting-flickr-api-key">Getting a Flickr API key</h2>
+
+<p>The first thing you need is an API key. The API key is a way for Yahoo! to track the activity associated with each API key. It is essentially your user-name for the Flickr API. You can get an API key fairly easily depending on the type of project you are doing. If you&#8217;re producing a commercial product, then Yahoo! will want to know about it. You&#8217;ll need a special API key for that type of project and Yahoo! will have to approve your product. However, if you're just experimenting and producing a non-commercial product, you can get an API key instantly. Login or create an account and then go to the <a href="http://www.flickr.com/services/api/keys/apply/">Flickr API key request</a>. Note: API keys are necessary for most methods of the Flickr API.</p>
+
+<p class="photo-caption-text">Flickr API key application</p>
+
+<h2 id="how-it-works">How it works</h2>
+
+<p>The first step to working with the <a href="http://www.flickr.com/services/api/">Flickr API</a> is having a broad understanding of how it works. There are essentially three steps to working with the API. First, you need to send Flickr a request of the information you would like. This is done by building a special URL (more on this later). Second, once Flickr understands your correctly built URL, it will send the information that you requested. The last step is to do something with the data with which Flickr responded. Whatever you&#8217;re doing with the Flickr API, your interaction will follow these three steps.</p>
+
+<h2 id="api-methods">Using the API methods</h2>
+
+<p>To send a request to Flickr, use the API methods to build a URL telling Flickr exactly what it is you want. All of the URLs start off with:</p>
+
+<pre><code>http://api.flickr.com/services/rest/?</code></pre>
+
+<p>They then continue based on what data you are requesting. Open the <a href="http://www.flickr.com/services/api/" target="_blank">Flickr API Documentation</a> in a separate tab. In the right column of the documentation you'll see the API Methods column. You can only use one method per request, so for example, let's say you want to pull data on the latest 200 photos from your Flickr account. To do this you'll use the <code>people</code>; method, specifically &#8216;flickr.people.getPublicPhotos&#8217;. Now you have another piece of your URL. So, it should now look something like this:</p>
+
+<pre><code>http://api.flickr.com/services/rest/?<strong>method=flickr.people.getPublicPhotos</strong></code></pre>
+
+<p>Go ahead and <a href="http://www.flickr.com/services/api/flickr.people.getPublicPhotos.html" target="_blank">click on that method</a> to get information on what arguments to include. You'll see that there are two required arguments: api_key and user_id. Next, add the api_key argument the same way you did the method: http://api.flickr.com/services/rest/?&amp;method=flickr.people.getPublicPhotos<strong>&amp;api_key=[your api key here]</strong>. The last required argument for this method is user_id. You can easily access your user id as well as lots of other useful information if you are on the <a href="http://www.flickr.com/services/api/flickr.people.getPublicPhotos.html">flickr.people.GetPublicPhotos API page</a> (or any other method&#8217;s page). Scroll to the bottom of the page and click <a>API Explorer: flickr.people.getPublicPhotos</a>. This page will allow you to easily submit a test call to Flickr using that method. In the column on the right you should find your user id. Go ahead and attach this to the end of the URL that you&#8217;ve build so far and give it a try:</p>
+
+<pre><code>http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=[your api key here]<strong>&amp;user_id=[your user id here]</strong></code></pre>
+
+<p class="demo-header">Demo</p>
+
+<p class="demo"><a href="http://api.flickr.com/services/rest/?&amp;method=flickr.people.getPublicPhotos&amp;api_key=4ef2fe2affcdd6e13218f5ddd0e2500d&amp;user_id=29096781@N02" target="_blank">Basic Flickr API request &raquo;</a></p>	
+	
+<h2 id="going-further">Going a little further</h2>
+
+<p>Now that you have the basics down, let&#8217;s look at how to go a little further with requests. After looking at the <a href="#full-url-one">first complete request</a>, you may have noticed that Flickr sent the data in XML format. This is because you didn&#8217;t specify an output format and XML is the default. On the <a href="http://www.flickr.com/services/api/" target="_blank">Flickr API Documentation homepage</a>, there is a section that reads &#8216;Response Formats&#8217;. Let&#8217;s adjust your request so that Flickr responds with the data in JSON format.</p>
+
+<h3 id="retrieving-json-data">Retrieving data in JSON format</h3>
+
+<p>To receive data in JSON, all you need to do is add the <code>format</code> argument to the URL and give it a value of <code>json</code>:</p>
+
+<pre><code>http://api.flickr.com/services/rest/?&amp;method=flickr.people.getPublicPhotos&amp;api_key=[your api key here]&amp;user_id=[your user id here]<strong>&amp;format=json</strong></code></pre>
+
+<p class="demo-header">Demo</p>
+
+<p class="demo"><a href="http://api.flickr.com/services/rest/?&amp;method=flickr.people.getPublicPhotos&amp;api_key=4ef2fe2affcdd6e13218f5ddd0e2500d&amp;user_id=29096781@N02&amp;format=json" target="_blank">Retrieve data in JSON format &raquo;</a></p>
+
+<h3 id="specifying-number-results">Specifying the Number of Results</h3>
+
+<p>Back on the <a href="http://www.flickr.com/services/api/flickr.people.getPublicPhotos.html">flickr.people.getPublicPhotos</a> method page you may have noticed an argument named <code>per_page</code>. You can use this argument to tell Flickr how many results you would like per request. Flickr notes that the default is 100 and the maximum is 500. As with the other arguments, just add it to the URL with the value you want:</p>
+
+<pre id="per-page"><code>http://api.flickr.com/services/rest/?&amp;method=flickr.people.getPublicPhotos&amp;api_key=[your api key here]&amp;user_id=[your user id here]<strong>&amp;format=json&amp;per_page=500</strong></code></pre>
+
+<p class="demo-header">Demo</p>
+
+<p class="demo"><a href="http://api.flickr.com/services/rest/?&amp;method=flickr.people.getPublicPhotos&amp;api_key=4ef2fe2affcdd6e13218f5ddd0e2500d&amp;user_id=29096781@N02&amp;per_page=500">Retrieve 500 results per page &raquo;</a></p>
+
+<h2 id="working-with-the-data">Working with the data</h2>
+
+<p>Now that you have a bunch of data from Flickr, you'll probably want to do something with it. Lets use it to find the URL to one of the photos in the XML response. To do this, you first need to figure out the URL structure for photos in Flickr. I did a search on Flickr and found this photo: <a href="http://www.flickr.com/photos/cobalt/157623061/" target="_blank">http://www.flickr.com/photos/cobalt/157623061/</a>. Notice the URL structure. The first segment (www.flickr.com) is the domain you are accessing, the second (photos) is what you are accessing, the third (cobalt) is presumably a user-name of the owner of the photo (although you may not know this if you&#8217;ve never worked with Flickr) and finally, the fourth (157623061) appears to be an ID number. Based on that URL, you may be able to guess that only two of those segments change depending on the picture (the third segment&#8211;the owner and the fourth&#8211;the ID number). Well guess what? You have both of those in each <code>&lt;photo&gt;</code> element in your response from Flickr. They are stored as parameters of the <code>&lt;photo&gt;</code> element (e.g. id=&#8221;3606438858&#8243; and owner=&#8221;29096781@N02&#8243;). Here is data on one of the photos Flickr responded with:</p>
+
+<pre><code>photo id=&#8221;3606436456&#8243; owner=&#8221;29096781@N02&#8243; secret=&#8221;3409b568ff&#8221; server=&#8221;3601&#8243; farm=&#8221;4&#8243; title=&#8221;IMG_0547&#8243; ispublic=&#8221;1&#8243; isfriend=&#8221;0&#8243; isfamily=&#8221;0&#8243;/&gt;</code></pre>
+
+<p>Go ahead and replace the &#8216;photo id&#8217; and &#8216;owner&#8217; values in the URL of the sunflower picture above. You should have something like this: <a href="http://www.flickr.com/photos/29096781@N02/3606436456/" target="_blank">http://www.flickr.com/photos/29096781@N02/3606436456/</a></p>
+
+<p>If you click that, you will be taken to a photo that I took. However, if you put in the <code>photo id</code> and <code>owner</code> values of one of the photo elements in the data you requested from Flickr, then you will most likely be taken to a different photo.</p>
+
+<h2 id="wrap-up">Wrap up</h2>
+
+<p>Congratulations! You now understand the basics of using the Flickr API. To recap, you first send a request to Flickr by building a URL. If your request is valid, Flickr will then send data back. The final step is actually doing something with the data. In this tutorial, we extracted the values of the <code>photo id</code> and <code>owner</code>, built a new URL, and sent it to Flickr. If you did everything correct, then you got a pretty picture back.</p>
+
+<p>In the next tutorial, I'll show you how to automate the use of the Flickr API with JavaScript, jQuery and JSON so that you can really get into the API.</p>

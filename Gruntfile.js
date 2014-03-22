@@ -77,14 +77,14 @@ module.exports = function(grunt) {
           flatten: true,
           layout: 'entry.hbs',
           ext: '.html',
-          collections: [
-            {
-              title: 'pages',
-              sortorder: 'asc',
-              sortby: 'date'
-            }
-          ]
         },
+        collections: [
+          {
+            name: 'pages',
+            sortorder: 'desc',
+            sortby: 'date'
+          }
+        ],
         files: {
           '<%= config.dist %>/blog/': ['<%= config.src %>/content/blog/*.html'],
           '<%= config.dist %>/': ['<%= config.src %>/content/index.html']

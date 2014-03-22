@@ -2,7 +2,7 @@
 title: Kyle Rush
 layout: main.hbs
 ---
-{{#withSort pages "data.date"}}
+{{#each pages}}
 	{{#if data.is_post}}
 <a href="/blog/{{basename}}.html">
 	<article class="post">
@@ -16,4 +16,4 @@ layout: main.hbs
 	</article>
 </a>
 	{{/if}}
-{{/withSort}}
+{{/each}}

@@ -1,13 +1,51 @@
 
     /*@import 'normalize.css';*/
 
-    img {max-width: 100%;}
+    html {
+        font-size: 1em;
+        line-height: 1.4;
+    }
 
-    a {color: #000; text-decoration: none;}
+    abbr,
+    acronym,
+    blockquote,
+    code,
+    dir,
+    kbd,
+    listing,
+    plaintext,
+    q,
+    samp,
+    tt,
+    var,
+    xmp {
+        /* http://meyerweb.com/eric/thoughts/2012/12/17/where-to-avoid-css-hyphenation*/
+        -webkit-hyphens: none; // Safari 5.1 thru 6, iOS 4.2 thru 6
+        -moz-hyphens: none; // Firefox 16 thru 20
+        -ms-hyphens: none; // IE10
+        -o-hyphens: none; // PRESTO...haha LOL
+        hyphens: none; // W3C standard
+    }
 
+    $heading-color: #222;
+    $body-copy-clor: #444;
     $dark-gray: #555;
     $light-gray: #999;
-    $header-font-family: Helvetica;
+    $header-font-family: Helvetica, sans-serif;
+    $heading-font-family: 'Bell MT', serif;
+    $body-copy-font-family: Calibri;
+    $small-caps-color: #666;
+    $body-copy-font-size: 1.5em;
+
+    @import 'mixins.scss';
+
+    img {max-width: 100%;}
+    a {
+        text-decoration: none;
+        p {
+            color: $body-copy-font-family;
+        }
+    }
 
     .container {
         max-width: 55em;
@@ -39,8 +77,12 @@
     }
 
     h1, h2, h3, h4 {
-        font-family: 'Bell MT', serif;
+        font-family: $heading-font-family;
+        color: $heading-color;
         text-align: center;
+        a {
+            color: $heading-color;
+        }
     }
     h1 {
         font-size: 4em;
@@ -76,32 +118,68 @@
         .date {
             color: $light-gray;
             text-align: center;
-            font: 1.5em Georgia, serif;
+            font: 1em Georgia, serif;
             margin: 0 0 1em 0;
         }
     }
     div.article-content {
         p, figcaption {
-            font-family: Calibri;
+            font-family: $body-copy-font-family;
             font-weight: lighter;
+            color: $body-copy-clor;
         }
         p {
-            font-size: 1.5em;
+            font-size: $body-copy-font-size; 
             line-height: 1.8em;
+            text-indent: 1.5em;
+            margin: 0;
             a {
                 text-decoration: underline;
+                color: $body-copy-clor;
+            }
+            abbr {
+                font-weight: bold;
+                color: $small-caps-color;
             }
         }
         figure, .gist {
-            text-align: center;
             margin: 3em 0;
         }
-
+        figure{
+            text-align: center;
+        }
         figcaption {
             width: 100%;
             margin: $figcaption-margin;
             font-size: 1.2em;
             color: #666;
+        }
+        p.demo-header{
+            font-family: $heading-font-family;
+            text-transform: uppercase;
+            margin: 3em 0 0 0;
+        }
+        p.demo {
+            margin: 0 0 3em 0;
+        }
+        p.demo-header, p.demo {
+            text-align: center;
+        }
+        pre code {
+            @extend %normal-wrap;
+            @include white-space(1em);
+            font-size: $body-copy-font-size;
+        }
+
+        pre {
+            @include white-space(1em);
+            margin: 3em 0;
+        }
+
+        code {
+            @include white-space(pre);
+            font-family: monospace;
+            word-wrap: break-word;
         }
     }
 
